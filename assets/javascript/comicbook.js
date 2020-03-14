@@ -41,8 +41,9 @@ $("#search-btn").on("click", function (event) {
   database.ref().push(newSearch);
   // Logs everything to console
   console.log(newSearch.searchterm);
+  //
   //runs searchComics function with calls to APIs
-  searchComics(inputComic);
+  searchComics(searchTerm);
   // Clears all of the text-boxes
   $("#search-input").val("");
 });
@@ -53,7 +54,6 @@ database.ref().on("child_added", function (childSnapshot) {
   // Store everything into a variable.
   var searchTerm = childSnapshot.val().searchterm;
   // Log search term Info
-  console.log(searchTerm);
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(searchTerm),
@@ -89,7 +89,7 @@ function searchComics(title) {
  //----------------------------------------------Comic Book API AJAX Call + append to HTML-------------------------------------------------
 
   // Querying the comicbooks api for the selected title, the ?app_id parameter is required, but can equal anything
-  var ComicQueryURL = "**ADD comicbook api url here" + title + "**End comic book url with api key**";
+  var ComicQueryURL = "https://comicvine.gamespot.com/api/search/?name=" + title + "api_key=6e5fe8ff3f6af8b73f1c2e7248c561c6e17d0feb&format=json";
   $.ajax({
     url: ComicQueryURL,
     method: "GET"
@@ -99,18 +99,24 @@ function searchComics(title) {
     console.log(response);
 
     // Constructing HTML containing the comic information
-            // examples from class activity:
-                  // var artistName = $("<h1>").text(response.name);
-                  // var artistURL = $("<a>").attr("href", response.url).append(artistName);
-                  // var artistImage = $("<img>").attr("src", response.thumb_url);
-                  // var trackerCount = $("<h2>").text(response.tracker_count + " fans tracking this artist");
-                  // var upcomingEvents = $("<h2>").text(response.upcoming_event_count + " upcoming events");
-                  // var goToArtist = $("<a>").attr("href", response.url).text("See Tour Dates");
+    var comicTitle = response.;
+    var comicAuthor = response.;
+    var comicImage = response.;
+    var comicIssue = response.;
+    var comicVolume = response.;
+
+    var buyButton = $("<button>");
+    buyButton.addClass("buyingButton");
+    buyButton.text("Click here to buy!");
 
     // Empty the contents of the comic-div, append the new comic content
     $("#comic-div").empty();
-    $("#comic-div").append(//artistURL, artistImage, trackerCount, upcomingEvents, goToArtist 
-      );
+    $("#comic-div").append(comicTitle);
+    $("#comic-div").append(comicAuthor);
+    $("#comic-div").append(comicImage);
+    $("#comic-div").append(comicIssue);
+    $("#comic-div").append(comicVolume);
+    $("#comic-div").append(buyButton);
   });
 
   //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
