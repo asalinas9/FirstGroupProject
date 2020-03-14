@@ -89,7 +89,7 @@ function searchComics(title) {
  //----------------------------------------------Comic Book API AJAX Call + append to HTML-------------------------------------------------
 
   // Querying the comicbooks api for the selected title, the ?app_id parameter is required, but can equal anything
-  var ComicQueryURL = "https://comicvine.gamespot.com/api/search/?name=" + title + "api_key=6e5fe8ff3f6af8b73f1c2e7248c561c6e17d0feb&format=json";
+  var ComicQueryURL = "https://comicvine.gamespot.com/api/volumes/?api_key=6e5fe8ff3f6af8b73f1c2e7248c561c6e17d0feb&format=json&sort=name:asc&filter=name:" + title;
   $.ajax({
     url: ComicQueryURL,
     method: "GET"
@@ -99,24 +99,12 @@ function searchComics(title) {
     console.log(response);
 
     // Constructing HTML containing the comic information
-    var comicTitle = response.;
-    var comicAuthor = response.;
-    var comicImage = response.;
-    var comicIssue = response.;
-    var comicVolume = response.;
-
-    var buyButton = $("<button>");
-    buyButton.addClass("buyingButton");
-    buyButton.text("Click here to buy!");
-
-    // Empty the contents of the comic-div, append the new comic content
+    var comicTitle = response.results[i].name;
+    var comicImage = response.results[i].image.icon_url;
+    
     $("#comic-div").empty();
     $("#comic-div").append(comicTitle);
-    $("#comic-div").append(comicAuthor);
     $("#comic-div").append(comicImage);
-    $("#comic-div").append(comicIssue);
-    $("#comic-div").append(comicVolume);
-    $("#comic-div").append(buyButton);
   });
 
   //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
@@ -132,12 +120,13 @@ function searchComics(title) {
     console.log(response);
 
     // Constructing HTML link/button containing link to buy book on ebay  
-              // var goToArtist = $("<a>").attr("href", response.url).text("See Tour Dates");
+    var buyButton = $("<button>");
+    buyButton.addClass("buyingButton");
+    buyButton.text("Click here to buy!");
 
     // Empty the contents of the buybook-div, append the new buy book link
     $("#buybook-div").empty();
-    $("#buybook-div").append(//goToArtist
-      );
+    $("#buybook-div").append(buyButton);
   });
 
 }
