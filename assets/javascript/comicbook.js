@@ -99,12 +99,39 @@ function searchComics(title) {
     console.log(response);
 
     // Constructing HTML containing the comic information
-    var comicTitle = response.results[i].name;
-    var comicImage = response.results[i].image.icon_url;
-    
-    $("#comic-div").empty();
-    $("#comic-div").append(comicTitle);
-    $("#comic-div").append(comicImage);
+
+    //creates variable to hold the results array from the API response 
+    var results = response.results;
+
+    //loops through results array
+    for (var i = 0; results.length; i++) {
+
+      //creates div to hold info from API
+      var comicDiv = $("<div>");
+
+        //creates <p> tag to hold name of comics
+        var comicTitle = $("<p>");
+
+        //!!!---NEEDS TO BE FIXED, DOESN'T DISPLAY NAME ON PAGE---!!!
+        comicTitle.attr("src", results[i].name);
+
+        //gives line break so name of comic isn't covered by picture of comic
+        var brk = $("</br>");
+
+        //creates <img> tag to hold images of the comic searched
+        var comicImage = $("<img>") 
+        comicImage.attr("src", results[i].image.icon_url);
+
+        //appends the title(s), line break, and image(s) of comic(s) searched
+        comicDiv.append(comicTitle);
+        comicDiv.append(brk);
+        comicDiv.append(comicImage);
+        
+        //appends comicDiv to comic div already in HTML
+        $("#comic-div").empty();
+        $("#comic-div").append(comicDiv);
+    }
+
   });
 
   //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
