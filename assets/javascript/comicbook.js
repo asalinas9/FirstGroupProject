@@ -93,7 +93,7 @@ function searchComics(title) {
  //----------------------------------------------Comic Book API AJAX Call + append to HTML-------------------------------------------------
 
   // Querying the comicbooks api for the selected title, the ?app_id parameter is required, but can equal anything
-  var ComicQueryURL = "https://comicvine.gamespot.com/api/volumes/?api_key=6e5fe8ff3f6af8b73f1c2e7248c561c6e17d0feb&format=json&sort=name:asc&filter=name:" + title;
+  var ComicQueryURL = "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/volumes/?api_key=6e5fe8ff3f6af8b73f1c2e7248c561c6e17d0feb&format=json&sort=name:asc&filter=name:" + title;
   $.ajax({
     url: ComicQueryURL,
     method: "GET"
