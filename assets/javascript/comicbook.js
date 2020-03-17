@@ -88,7 +88,7 @@ database.ref().on("child_added", function (childSnapshot) {
 
 function searchComics(title) {
 
-  //var exactComic = "";
+  
 
  //----------------------------------------------Comic Book API AJAX Call + append to HTML-------------------------------------------------
 
@@ -106,12 +106,13 @@ function searchComics(title) {
 
     //creates variable to hold the results array from the API response 
     var results = response.results;
+    var exactComic = "";
 
     //loops through results array
     for (var i = 0; i < results.length; i++) {
 
       //finds exact comic title and gives it to exactComic variable to be used in eBay API call
-      //exactComic = results[i].name;
+      exactComic = results[i].name;
 
       //creates div to hold info from API
       var comicDiv = $("<div>");
@@ -140,16 +141,18 @@ function searchComics(title) {
         //appends comicDiv to comic div already in HTML
         $("#comic-div").empty();
         $("#comic-div").append(comicDiv);
+        
     }
+    searchListings(exactComic)
 
   });
-
+}
 
 
   //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
 
 
-
+function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
   var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title + "&AvailableItemsOnly=true";
 
