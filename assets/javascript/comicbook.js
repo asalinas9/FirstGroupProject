@@ -1,4 +1,3 @@
-
 // ---------------------------------------------------------------------------things needed in HTML file-------------------------------
 
 // <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
@@ -167,8 +166,6 @@ function searchListings(title) {
 
     // Printing the entire object to console
     console.log(response);
-
-
 
     // Constructing HTML link/button containing link to buy book on ebay  
     var buyButton = $("<button>");
