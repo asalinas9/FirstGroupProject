@@ -1,66 +1,45 @@
 
-// ---------------------------------------------------------------------------things needed in HTML file-------------------------------
-
-// <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
-// <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
-//button with id #search-button
-//form with id #search-input
-//table with id #searchterm-table
-//div with id #comic-div
-//div within or near comic-div with id #buybook-div
-
-//-----------------------------------------------------------------questions-----------------------------------------------------------------
-// do we need to do anything special bc there are 2 different APIs? maybe create separate functions?
-
-
 
 // --------------------------------------------------------------Firebase, adding search term to DB and pulling to HTML---------------------------------------------
-// Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyAD8D_DS1TRkJXkWT4g_Y57Itjw_oIcpwU",
-  authDomain: "comic-book-search.firebaseapp.com",
-  databaseURL: "https://comic-book-search.firebaseio.com",
-  projectId: "comic-book-search",
-  storageBucket: "comic-book-search.appspot.com",
-  messagingSenderId: "167980205893",
-  appId: "1:167980205893:web:1df86c3da4a161ef7da02c"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var database = firebase.database();
+$("#comic-div").empty();
+$("#buybook-div").empty();
+
 // Button for adding Search term
 $("#search-btn").on("click", function (event) {
   event.preventDefault();
   // Grabs user input
   var searchTerm = $("#search-input").val().trim();
-  // Creates local "temporary" object for holding search term data
-  var newSearch = {
-    searchterm: searchTerm
-  };
-  // Uploads search term data to the database
-  database.ref().push(newSearch);
-  // Logs everything to console
-  console.log(newSearch.searchterm);
-  //
+
+
+  // Clear localStorage
+ //localStorage.clear();
+
+  // Store all content into localStorage
+  localStorage.setItem("searchterm", searchTerm);
+
+  $("#serchterm-display").text(sessionStorage.getItem("searchterm"));
+
+    var inputComic = $("#search-input").val().trim();
   //runs searchComics function with calls to APIs
-  searchComics(searchTerm);
+  searchComics(inputComic);
   // Clears all of the text-boxes
   $("#search-input").val("");
 });
 
 //Create Firebase event for adding search term  to the database and a row in the html when a user adds an entry
-database.ref().on("child_added", function (childSnapshot) {
-  console.log(childSnapshot.val());
-  // Store everything into a variable.
-  var searchTerm = childSnapshot.val().searchterm;
-  // Log search term Info
-  // Create the new row
-  var newRow = $("<tr>").append(
-    $("<td>").text(searchTerm),
-  );
-  // Append the new row to the table
-  $("#searchterm-table > tbody").append(newRow);
-});
+// database.ref().on("child_added", function (childSnapshot) {
+//   console.log(childSnapshot.val());
+//   // Store everything into a variable.
+//   var searchTerm = childSnapshot.val().searchterm;
+//   // Log search term Info
+//   console.log(searchTerm);
+//   // Create the new row
+//   var newRow = $("<tr>").append(
+//     $("<td>").text(searchTerm),
+//   );
+//   // Append the new row to the table
+//   $("#searchterm-table > tbody").append(newRow);
+
 
 //---------------------------------------------------------------------------------------------------------------------------------------end  of firebase functions---------
 
@@ -89,7 +68,7 @@ function searchComics(title) {
  //----------------------------------------------Comic Book API AJAX Call + append to HTML-------------------------------------------------
 
   // Querying the comicbooks api for the selected title, the ?app_id parameter is required, but can equal anything
-  var ComicQueryURL = "https://comicvine.gamespot.com/api/volumes/?api_key=6e5fe8ff3f6af8b73f1c2e7248c561c6e17d0feb&format=json&sort=name:asc&filter=name:" + title;
+  var ComicQueryURL = "**ADD comicbook api url here" + title + "**End comic book url with api key**";
   $.ajax({
     url: ComicQueryURL,
     method: "GET"
@@ -99,12 +78,18 @@ function searchComics(title) {
     console.log(response);
 
     // Constructing HTML containing the comic information
-    var comicTitle = response.results[i].name;
-    var comicImage = response.results[i].image.icon_url;
-    
+            // examples from class activity:
+                  // var artistName = $("<h1>").text(response.name);
+                  // var artistURL = $("<a>").attr("href", response.url).append(artistName);
+                  // var artistImage = $("<img>").attr("src", response.thumb_url);
+                  // var trackerCount = $("<h2>").text(response.tracker_count + " fans tracking this artist");
+                  // var upcomingEvents = $("<h2>").text(response.upcoming_event_count + " upcoming events");
+                  // var goToArtist = $("<a>").attr("href", response.url).text("See Tour Dates");
+
+    // Empty the contents of the comic-div, append the new comic content
     $("#comic-div").empty();
-    $("#comic-div").append(comicTitle);
-    $("#comic-div").append(comicImage);
+    $("#comic-div").append(//artistURL, artistImage, trackerCount, upcomingEvents, goToArtist 
+      );
   });
 
   //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
@@ -120,13 +105,12 @@ function searchComics(title) {
     console.log(response);
 
     // Constructing HTML link/button containing link to buy book on ebay  
-    var buyButton = $("<button>");
-    buyButton.addClass("buyingButton");
-    buyButton.text("Click here to buy!");
+              // var goToArtist = $("<a>").attr("href", response.url).text("See Tour Dates");
 
     // Empty the contents of the buybook-div, append the new buy book link
     $("#buybook-div").empty();
-    $("#buybook-div").append(buyButton);
+    $("#buybook-div").append(//goToArtist
+      );
   });
 
 }
