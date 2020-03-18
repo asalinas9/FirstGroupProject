@@ -41,11 +41,12 @@ $("#search-btn").on("click", function (event) {
   database.ref().push(newSearch);
   // Logs everything to console
   console.log(newSearch.searchterm);
-  //
+  $("#comic-div").empty()
   //runs searchComics function with calls to APIs
   searchComics(searchTerm);
   // Clears all of the text-boxes
   $("#search-input").val("");
+;
 });
 
 //Create Firebase event for adding search term  to the database and a row in the html when a user adds an entry
@@ -121,7 +122,6 @@ function searchComics(title) {
         var comicTitle = $("<h3>");
 
         //floats results to left to add them side by side
-        comicTitle.attr("style= float:left");
 
         //!!!---NEEDS TO BE FIXED, DOESN'T DISPLAY NAME ON PAGE---!!!
         comicTitle.text(results[i].name);
@@ -131,15 +131,18 @@ function searchComics(title) {
 
         //creates <img> tag to hold images of the comic searched
         var comicImage = $("<img>") 
-        comicImage.attr("src", results[i].image.small_url);
+        comicImage.attr("src", results[i].image.thumb_url);
 
         //appends the title(s), line break, and image(s) of comic(s) searched
+        comicDiv.css("float", "left")
+        comicDiv.css("margin-left", "15px")
         comicDiv.append(comicTitle);
         comicDiv.append(brk);
         comicDiv.append(comicImage);
         
+        
         //appends comicDiv to comic div already in HTML
-        $("#comic-div").empty();
+
         $("#comic-div").append(comicDiv);
         
     }
