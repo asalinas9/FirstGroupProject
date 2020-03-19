@@ -13,17 +13,14 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!--- <link rel="stylesheet" href="assets/css/style.css"> -->
-    <!-- <link rel="stylesheet" href="css/menu.css"> -->
+
+
     <title>Comic Book Search App</title>
 
 
 <body>
     <!-- <div class="jumbotron bg-dark text-white">
         <div class="container">
-<<<<<<< HEAD
-            <h1 class="header-main-title">Comic Book Search App</h1> -->
-=======
             <h1 class="header-main-title">Comic Book Search App</h1>
 
             <div class="form-group">
@@ -34,7 +31,7 @@
                     <div id ="searchterm-display"></div>
 
                     <div id="comic-div">
->>>>>>> 0e5d08de389885e6df0d673d51ad6c7d05dff6d1
+                    -->
 
     <div class="navbar-fixed">
         <nav class="red darken-3">
@@ -47,17 +44,15 @@
                             <a href="#home">Home</a>
                         </li>
                         <li>
-                            <a href="#search">Store</a>
+                            <a href="#library">Library</a>
                         </li>
                         <li>
-                            <a href="#popular">Facebook</a>
-                        </li>
-                        <li>
-                            <a href="#gallery">Instagram</a>
+                            <a href="#store">Store</a>
                         </li>
                         <li>
                             <a href="#contact">Contact</a>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -68,17 +63,15 @@
             <a href="#home">Home</a>
         </li>
         <li>
-            <a href="#search">Store</a>
+            <a href="#library">Library</a>
         </li>
         <li>
-            <a href="#popular">Facebook</a>
-        </li>
-        <li>
-            <a href="#gallery">Instagram</a>
+            <a href="#store">store</a>
         </li>
         <li>
             <a href="#contact">Contact</a>
         </li>
+
     </ul>
     <section class="slider">
         <ul class="slides">
@@ -144,13 +137,50 @@
                     </a>
                     <a href="#" class="white-text">
                         <i class="fab fa-instagram fa-4x"></i>
-                        <a href="#" class="white-text">
-                            <i class="fab fa-pinterest fa-4x"></i>
-                        </a>
+                    </a>
+                    <a href="#" class="white-text">
+                        <i class="fab fa-pinterest fa-4x"></i>
+                    </a>
                 </div>
             </div>
         </div>
+
     </section>
+    <!-- Section: Contact -->
+    <div id="contact" class="section section-contact scrollspy">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card-panel red darken-3 white-text center">
+                        <i class="material-icons medium">email</i>
+                        <h5>Contact us for any questions or comments you may have</h5>
+
+                    </div>
+
+
+                </div>
+                <div class="col s12 m6">
+                    <div class="card-panel grey lighten-3">
+                        <h5>Become a Comic Member</h5>
+                        <div class="input-field">
+                            <input type="text" placeholder="Name" id="name">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="email" placeholder="Email" id="email">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" placeholder="Phone" id="phone">
+                            <label for="phone">Phone</label>
+                        </div>
+
+                        <input type="submit" value="Submit" class="btn blue">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!---  Original HTML
     <div class="form-group">
@@ -197,10 +227,6 @@
         // Scrollspy
         const ss = document.querySelectorAll('.scrollspy');
         M.ScrollSpy.init(ss, {});
-
-        // Material Boxed
-        const mb = document.querySelectorAll('.materialboxed');
-        M.Materialbox.init(mb, {});
 
         // Auto Complete
         const ac = document.querySelector('.autocomplete');

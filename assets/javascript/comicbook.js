@@ -123,27 +123,6 @@ function searchComics(title) {
 
       //creates <p> tag to hold name of comics
       var comicTitle = $("<h3>");
-<<<<<<< HEAD
-
-      //floats results to left to add them side by side
-      comicTitle.attr("style= float:left");
-
-      //!!!---NEEDS TO BE FIXED, DOESN'T DISPLAY NAME ON PAGE---!!!
-      comicTitle.text(results[i].name);
-
-      //gives line break so name of comic isn't covered by picture of comic
-      var brk = $("</br>");
-
-      //creates <img> tag to hold images of the comic searched
-      var comicImage = $("<img>")
-      comicImage.attr("src", results[i].image.small_url);
-
-      //appends the title(s), line break, and image(s) of comic(s) searched
-      comicDiv.append(comicTitle);
-      comicDiv.append(brk);
-      comicDiv.append(comicImage);
-
-=======
 
       //floats results to left to add them side by side
 
@@ -165,7 +144,6 @@ function searchComics(title) {
       comicDiv.append(comicImage);
 
 
->>>>>>> 0e5d08de389885e6df0d673d51ad6c7d05dff6d1
       //appends comicDiv to comic div already in HTML
 
       $("#comic-div").append(comicDiv);
