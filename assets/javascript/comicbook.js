@@ -65,7 +65,7 @@ $(document).on("click", ".pastsearch", function () {
   console.log(searchTerm)
   $("#comic-div").empty()
   searchComics(searchTerm);
-  });
+});
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -160,7 +160,7 @@ function searchComics(title) {
 
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
-  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title + "&AvailableItemsOnly=true";
+  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=comicTitle" + title + "&AvailableItemsOnly=true";
 
 
   $.ajax({
