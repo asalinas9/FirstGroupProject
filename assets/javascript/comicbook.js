@@ -32,16 +32,6 @@ $("#search-btn").on("click", function (event) {
   event.preventDefault();
   // Grabs user input
   var searchTerm = $("#search-input").val().trim();
-<<<<<<< HEAD
-  // Creates local "temporary" object for holding search term data
-  var newSearch = {
-    searchterm: searchTerm
-  };
-  // Uploads search term data to the database
-  database.ref().push(newSearch);
-  // Logs everything to console
-  console.log(newSearch.searchterm);
-=======
 
   // Load the search terms from localstorage.
   // We need to use JSON.parse to turn the string retrieved from an array into a string
@@ -60,7 +50,6 @@ $("#search-btn").on("click", function (event) {
   // Save the serch terms into localstorage.
   localStorage.setItem("pastsearch", JSON.stringify(pastsearch));
 
->>>>>>> 0e5d08de389885e6df0d673d51ad6c7d05dff6d1
   $("#comic-div").empty();
   //runs searchComics function with calls to APIs
   searchComics(searchTerm);
@@ -76,7 +65,7 @@ $(document).on("click", ".pastsearch", function () {
   console.log(searchTerm)
   $("#comic-div").empty()
   searchComics(searchTerm);
-  });
+});
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
