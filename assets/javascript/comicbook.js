@@ -120,7 +120,7 @@ function searchComics(title) {
       comicDiv.addClass("each-comic");
 
       //creates <p> tag to hold name of comics
-      var comicTitle = $("<h3>");
+      var comicTitle = $("<h5>");
 
       //floats results to left to add them side by side
 
