@@ -41,7 +41,7 @@ $("#search-btn").on("click", function (event) {
   database.ref().push(newSearch);
   // Logs everything to console
   console.log(newSearch.searchterm);
-  //
+  $("#comic-div").empty();
   //runs searchComics function with calls to APIs
   searchComics(searchTerm);
   // Clears all of the text-boxes
@@ -73,14 +73,14 @@ database.ref().on("child_added", function (childSnapshot) {
 
 //------------------------------------------------------------ ajax call to comicbook + ebay APIs--------------------------------------------
 
-            //----------------------------------things left to do:
-                    // 1. get URL, API key fro comic book URL and insert below - line 92
-                    // 2. figure out which search terms we need to use and insert into fuction name and query url. "title" is used as a placeholder for now - line 87, 92
-                    // 3. fill in "consturcting html containing comic information" section with relevant api data attributes - line 92+
-                    // 4. update variable names in append function to match cariable created in step 3 - line 101 - 108
-                    // 5. repeat for eBay API section (does it have to be the same search parameters as the first api? I'm confused) - lines 119, 128-129, 133
-                    // 6. pray it works *fingers crossed emoji*
-            //--------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------things left to do:
+// 1. get URL, API key fro comic book URL and insert below - line 92
+// 2. figure out which search terms we need to use and insert into fuction name and query url. "title" is used as a placeholder for now - line 87, 92
+// 3. fill in "consturcting html containing comic information" section with relevant api data attributes - line 92+
+// 4. update variable names in append function to match cariable created in step 3 - line 101 - 108
+// 5. repeat for eBay API section (does it have to be the same search parameters as the first api? I'm confused) - lines 119, 128-129, 133
+// 6. pray it works *fingers crossed emoji*
+//--------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -88,9 +88,9 @@ database.ref().on("child_added", function (childSnapshot) {
 
 function searchComics(title) {
 
-  
 
- //----------------------------------------------Comic Book API AJAX Call + append to HTML-------------------------------------------------
+
+  //----------------------------------------------Comic Book API AJAX Call + append to HTML-------------------------------------------------
 
   // Querying the comicbooks api for the selected title, the ?app_id parameter is required, but can equal anything
   var ComicQueryURL = "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/volumes/?api_key=6e5fe8ff3f6af8b73f1c2e7248c561c6e17d0feb&format=json&sort=name:asc&filter=name:" + title;
@@ -117,31 +117,31 @@ function searchComics(title) {
       //creates div to hold info from API
       var comicDiv = $("<div>");
 
-        //creates <p> tag to hold name of comics
-        var comicTitle = $("<h3>");
+      //creates <p> tag to hold name of comics
+      var comicTitle = $("<h3>");
 
-        //floats results to left to add them side by side
-        comicTitle.attr("style= float:left");
+      //floats results to left to add them side by side
+      comicTitle.attr("style= float:left");
 
-        //!!!---NEEDS TO BE FIXED, DOESN'T DISPLAY NAME ON PAGE---!!!
-        comicTitle.text(results[i].name);
+      //!!!---NEEDS TO BE FIXED, DOESN'T DISPLAY NAME ON PAGE---!!!
+      comicTitle.text(results[i].name);
 
-        //gives line break so name of comic isn't covered by picture of comic
-        var brk = $("</br>");
+      //gives line break so name of comic isn't covered by picture of comic
+      var brk = $("</br>");
 
-        //creates <img> tag to hold images of the comic searched
-        var comicImage = $("<img>") 
-        comicImage.attr("src", results[i].image.small_url);
+      //creates <img> tag to hold images of the comic searched
+      var comicImage = $("<img>")
+      comicImage.attr("src", results[i].image.small_url);
 
-        //appends the title(s), line break, and image(s) of comic(s) searched
-        comicDiv.append(comicTitle);
-        comicDiv.append(brk);
-        comicDiv.append(comicImage);
-        
-        //appends comicDiv to comic div already in HTML
-        $("#comic-div").empty();
-        $("#comic-div").append(comicDiv);
-        
+      //appends the title(s), line break, and image(s) of comic(s) searched
+      comicDiv.append(comicTitle);
+      comicDiv.append(brk);
+      comicDiv.append(comicImage);
+
+      //appends comicDiv to comic div already in HTML
+
+      $("#comic-div").append(comicDiv);
+
     }
     searchListings(exactComic)
 
@@ -149,12 +149,12 @@ function searchComics(title) {
 }
 
 
-  //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
+//-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
 
 
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
-  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title + "&AvailableItemsOnly=true";
+  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=comicTitle" + title + "&AvailableItemsOnly=true";
 
 
   $.ajax({
