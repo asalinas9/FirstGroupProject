@@ -5,18 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/1cda4fe608.js" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <link rel="stylesheet" href="css/menu.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
     <title>Comic Book Search App</title>
 
 
 <body>
-    <div class="jumbotron bg-dark text-white">
+    <!-- <div class="jumbotron bg-dark text-white">
         <div class="container">
             <h1 class="header-main-title">Comic Book Search App</h1>
 
@@ -28,17 +31,209 @@
                     <div id ="searchterm-display"></div>
 
                     <div id="comic-div">
+                    -->
 
+    <div class="navbar-fixed">
+        <nav class="red darken-3">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="#!" class="brand-logo darken-3 white-text">Comic Book Search App</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="#home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#library">Library</a>
+                        </li>
+                        <li>
+                            <a href="#store">Store</a>
+                        </li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
 
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a href="#home">Home</a>
+        </li>
+        <li>
+            <a href="#library">Library</a>
+        </li>
+        <li>
+            <a href="#store">store</a>
+        </li>
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+    <section class="slider">
+        <ul class="slides">
+            <li>
+                <img src="assets/images 2/MvsDC1.jpg" alt="">
+                <div class="caption center-align">
+                    <h2>where you can find your favorite comic characters</h2>
+
+                </div>
+            </li>
+            <li>
+                <img src="assets/images 2/marvel.jpg" alt="">
+                <div class="caption left-align">
+                    <h2>Search for your favorite Marvel Characters</h2>
+
+                </div>
+            </li>
+            <li>
+                <img src="assets/images 2/DC3.jpg" alt="">
+                <div class="caption right-align">
+                    <h2>Search for your favorite DC Characters</h2>
+
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section id="search" class="section section-search red darken-4 darken-3 white-text center scrollspy">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h3>Search Character</h3>
+                    <div class="input-field">
+                        <input class="white grey-text autocomplete" placeholder="Spiderman, Hulk, etc..." type="text"
+                            id="autocomplete-input">
+                        <a href="#" class="btn btn-large blue darken-2" id="search-btn">Search</a>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="section section-follow red darken-3 white-text center">
+        <div class="containter">
+            <div class="row">
+                <div class="col s12">
+                    <h4>Follow D Comic Store</h4>
+                    <p>Follow us on Social media for latest news and new content</p>
+                    <a href="#" class="white-text">
+                        <i class="fab fa-facebook fa-4x"></i>
+                    </a>
+                    <a href="#" class="white-text">
+                        <i class="fab fa-twitter fa-4x"></i>
+                    </a>
+                    <a href="#" class="white-text">
+                        <i class="fab fa-instagram fa-4x"></i>
+                    </a>
+                    <a href="#" class="white-text">
+                        <i class="fab fa-pinterest fa-4x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Section: Contact -->
+    <div id="contact" class="section section-contact scrollspy">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card-panel red darken-3 white-text center">
+                        <i class="material-icons medium">email</i>
+                        <h5>Contact us for any questions or comments you may have</h5>
+
+                    </div>
 
 
+                </div>
+                <div class="col s12 m6">
+                    <div class="card-panel grey lighten-3">
+                        <h5>Become a Comic Member</h5>
+                        <div class="input-field">
+                            <input type="text" placeholder="Name" id="name">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="email" placeholder="Email" id="email">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" placeholder="Phone" id="phone">
+                            <label for="phone">Phone</label>
+                        </div>
 
+                        <input type="submit" value="Submit" class="btn blue">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---  Original HTML
+    <div class="form-group">
+        <div type="submit" value="text">
+            <input type="text" class="form-control" id="search-input">
+            <button type="submit" class="btn btn-primary" id="search-btn">Submit</button>
+
+            <table class="table table-sm table-hover" id='searchterm-table'>
+                <thead>
+                    <tr>
+                        <th scope="col">Past Search Terms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <div id="comic-div">
+
+
+            </div>
+        </div>
+    </div>
+-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/comicbook.js" id="myScript"></script>
 
+    <script>
+        // Side Menu
+        var sideNav = document.querySelector('.sidenav');
+        M.Sidenav.init(sideNav, {});
+
+        // Slider
+        var slider = document.querySelector('.slider');
+        M.Slider.init(slider, {
+            indicators: false,
+            height: 500,
+            transition: 500,
+            interval: 6000
+        });
+
+        // Scrollspy
+        var ss = document.querySelectorAll('.scrollspy');
+        M.ScrollSpy.init(ss, {});
+
+        // Auto Complete
+        var ac = document.querySelector('.autocomplete');
+        M.Autocomplete.init(ac, {
+            data: {
+                "Spiderman": null,
+                "Hulk": null,
+                "Wonder Woman": null,
+                "Batman": null,
+                "Superman": null,
+                "Black Panther": null,
+                "Flash": null,
+                "Black Widow": null,
+            }
+        });
+    </script>
 </body>
 
 </html>
