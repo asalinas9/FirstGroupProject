@@ -79,30 +79,21 @@
                 <img src="assets/images 2/MvsDC1.jpg" alt="">
                 <div class="caption center-align">
                     <h2>where you can find your favorite comic characters</h2>
-                    <!--  <h5 class="light red-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet
-                        consectetur
-                        adipisicing elit. Veniam non illo earum cumque id est!</h5>
-                    <a href="#" class="btn btn-large">Learn More</a> -->
+
                 </div>
             </li>
             <li>
                 <img src="assets/images 2/marvel.jpg" alt="">
                 <div class="caption left-align">
                     <h2>Search for your favorite Marvel Characters</h2>
-                    <!--  <h5 class="light red-text  hide-on-small-only">Lorem ipsum dolor sit amet
-                        consectetur
-                        adipisicing elit. Veniam non illo earum cumque id est!</h5>
-                    <a href="#" class="btn btn-large">Learn More</a> -->
+
                 </div>
             </li>
             <li>
                 <img src="assets/images 2/DC3.jpg" alt="">
                 <div class="caption right-align">
                     <h2>Search for your favorite DC Characters</h2>
-                    <!-- <h5 class="light white-text text-darken hide-on-small-only">Lorem ipsum dolor sit amet
-                        consectetur
-                        adipisicing elit. Veniam non illo earum cumque id est!</h5> 
-                    <a href="#" class="btn btn-large">Learn More</a> -->
+
                 </div>
             </li>
         </ul>
@@ -116,7 +107,7 @@
                     <div class="input-field">
                         <input class="white grey-text autocomplete" placeholder="Spiderman, Hulk, etc..." type="text"
                             id="autocomplete-input">
-                        <a href="#" class="btn btn-large blue darken-4" id="search-btn">Search</a>
+                        <a href="#" class="btn btn-large blue darken-2" id="search-btn">Search</a>
                     </div>
                 </div>
             </div>
@@ -212,11 +203,11 @@
 
     <script>
         // Side Menu
-        const sideNav = document.querySelector('.sidenav');
+        var sideNav = document.querySelector('.sidenav');
         M.Sidenav.init(sideNav, {});
 
         // Slider
-        const slider = document.querySelector('.slider');
+        var slider = document.querySelector('.slider');
         M.Slider.init(slider, {
             indicators: false,
             height: 500,
@@ -225,11 +216,11 @@
         });
 
         // Scrollspy
-        const ss = document.querySelectorAll('.scrollspy');
+        var ss = document.querySelectorAll('.scrollspy');
         M.ScrollSpy.init(ss, {});
 
         // Auto Complete
-        const ac = document.querySelector('.autocomplete');
+        var ac = document.querySelector('.autocomplete');
         M.Autocomplete.init(ac, {
             data: {
                 "Spiderman": null,
