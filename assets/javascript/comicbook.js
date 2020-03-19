@@ -1,68 +1,72 @@
-// ---------------------------------------------------------------------------things needed in HTML file-------------------------------
+// --------------------------------------------------------------ON PAGE LOAD---------------------------------------------
+//empties previous comics, displays any previour search terms
+$("#comic-div").empty();
+$("#buybook-div").empty();
+var pastsearch = JSON.parse(localStorage.getItem("pastsearch"));
 
-// <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
-// <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
-//button with id #search-button
-//form with id #search-input
-//table with id #searchterm-table
-//div with id #comic-div
-//div within or near comic-div with id #buybook-div
-
-//-----------------------------------------------------------------questions-----------------------------------------------------------------
-// do we need to do anything special bc there are 2 different APIs? maybe create separate functions?
-
-
-
-// --------------------------------------------------------------Firebase, adding search term to DB and pulling to HTML---------------------------------------------
-// Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyAD8D_DS1TRkJXkWT4g_Y57Itjw_oIcpwU",
-  authDomain: "comic-book-search.firebaseapp.com",
-  databaseURL: "https://comic-book-search.firebaseio.com",
-  projectId: "comic-book-search",
-  storageBucket: "comic-book-search.appspot.com",
-  messagingSenderId: "167980205893",
-  appId: "1:167980205893:web:1df86c3da4a161ef7da02c"
+if (Array.isArray(pastsearch)) {
+  renderpastsearch(pastsearch)
 };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var database = firebase.database();
-// Button for adding Search term
+
+//----------------------------------------------- create the list of past search terms to display----------------------------------------------------------------------
+
+function renderpastsearch(list) {
+  $("#searchterm-display").empty(); // empties out the html
+
+  // render our past seaqrch terms to the page
+  for (var i = 0; i < list.length; i++) {
+    // Create a new variable that will hold a "<p>" tag.
+    // Then set the search term "value" as text to this <p> element.
+    var searchitem = $("<button>");
+    searchitem.attr("class", "pastsearch");
+    searchitem.attr("data-name", list[i]);
+    searchitem.text(list[i]);
+    // Add the button and to do item to the to-dos div
+    $("#searchterm-display").append(searchitem);
+  }
+}
+//--------------------------------ON CLICK SEARCH BUTTON FUNTCION-----------------------------------------------------------------------------------------
+
+// Button for adding Search term, putting search term in array in local storage
 $("#search-btn").on("click", function (event) {
   event.preventDefault();
   // Grabs user input
   var searchTerm = $("#search-input").val().trim();
-  // Creates local "temporary" object for holding search term data
-  var newSearch = {
-    searchterm: searchTerm
-  };
-  // Uploads search term data to the database
-  database.ref().push(newSearch);
-  // Logs everything to console
-  console.log(newSearch.searchterm);
-  $("#comic-div").empty()
+
+  // Load the search terms from localstorage.
+  // We need to use JSON.parse to turn the string retrieved from an array into a string
+  var pastsearch = JSON.parse(localStorage.getItem("pastsearch"));
+
+  // Checks to see if the pastsearch exists in localStorage and is an array currently
+  // If not, set a local list variable to an empty array
+  // Otherwise list is our current list of searchterms
+  if (!Array.isArray(pastsearch)) {
+    pastsearch = [];
+  }
+
+  pastsearch.push(searchTerm);
+  renderpastsearch(pastsearch);
+
+  // Save the serch terms into localstorage.
+  localStorage.setItem("pastsearch", JSON.stringify(pastsearch));
+
+  $("#comic-div").empty();
   //runs searchComics function with calls to APIs
   searchComics(searchTerm);
   // Clears all of the text-boxes
   $("#search-input").val("");
-;
 });
 
-//Create Firebase event for adding search term  to the database and a row in the html when a user adds an entry
-database.ref().on("child_added", function (childSnapshot) {
-  console.log(childSnapshot.val());
-  // Store everything into a variable.
-  var searchTerm = childSnapshot.val().searchterm;
-  // Log search term Info
-  // Create the new row
-  var newRow = $("<tr>").append(
-    $("<td>").text(searchTerm),
-  );
-  // Append the new row to the table
-  $("#searchterm-table > tbody").append(newRow);
-});
 
-//---------------------------------------------------------------------------------------------------------------------------------------end  of firebase functions---------
+//-----------------------------------Searches Past terms when clicked on----------------------------------------------------------------------------
+$(document).on("click", ".pastsearch", function () {
+
+  var searchTerm = $(this).attr("data-name")
+  console.log(searchTerm)
+  $("#comic-div").empty()
+  searchComics(searchTerm);
+  });
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -73,14 +77,9 @@ database.ref().on("child_added", function (childSnapshot) {
 
 //------------------------------------------------------------ ajax call to comicbook + ebay APIs--------------------------------------------
 
-            //----------------------------------things left to do:
-                    // 1. get URL, API key fro comic book URL and insert below - line 92
-                    // 2. figure out which search terms we need to use and insert into fuction name and query url. "title" is used as a placeholder for now - line 87, 92
-                    // 3. fill in "consturcting html containing comic information" section with relevant api data attributes - line 92+
-                    // 4. update variable names in append function to match cariable created in step 3 - line 101 - 108
-                    // 5. repeat for eBay API section (does it have to be the same search parameters as the first api? I'm confused) - lines 119, 128-129, 133
-                    // 6. pray it works *fingers crossed emoji*
-            //--------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------things left to do:
+// 1. get links to create buttons and append to each comic
+//--------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -88,9 +87,9 @@ database.ref().on("child_added", function (childSnapshot) {
 
 function searchComics(title) {
 
-  
 
- //----------------------------------------------Comic Book API AJAX Call + append to HTML-------------------------------------------------
+
+  //----------------------------------------------Comic Book API AJAX Call + append to HTML-------------------------------------------------
 
   // Querying the comicbooks api for the selected title, the ?app_id parameter is required, but can equal anything
   var ComicQueryURL = "https://cors-anywhere.herokuapp.com/https://comicvine.gamespot.com/api/volumes/?api_key=6e5fe8ff3f6af8b73f1c2e7248c561c6e17d0feb&format=json&sort=name:asc&filter=name:" + title;
@@ -117,46 +116,49 @@ function searchComics(title) {
       //creates div to hold info from API
       var comicDiv = $("<div>");
 
-        //creates <p> tag to hold name of comics
-        var comicTitle = $("<h3>");
+      //gives class to comicDiv
+      comicDiv.addClass("each-comic");
 
-        //floats results to left to add them side by side
+      //creates <p> tag to hold name of comics
+      var comicTitle = $("<h3>");
 
-        //!!!---NEEDS TO BE FIXED, DOESN'T DISPLAY NAME ON PAGE---!!!
-        comicTitle.text(results[i].name);
+      //floats results to left to add them side by side
 
-        //gives line break so name of comic isn't covered by picture of comic
-        var brk = $("</br>");
+      //!!!---NEEDS TO BE FIXED, DOESN'T DISPLAY NAME ON PAGE---!!!
+      comicTitle.text(results[i].name);
 
-        //creates <img> tag to hold images of the comic searched
-        var comicImage = $("<img>") 
-        comicImage.attr("src", results[i].image.thumb_url);
+      //gives line break so name of comic isn't covered by picture of comic
+      var brk = $("</br>");
 
-        //appends the title(s), line break, and image(s) of comic(s) searched
-        comicDiv.css("float", "left")
-        comicDiv.css("margin-left", "15px")
-        comicDiv.append(comicTitle);
-        comicDiv.append(brk);
-        comicDiv.append(comicImage);
-        
-        
-        //appends comicDiv to comic div already in HTML
+      //creates <img> tag to hold images of the comic searched
+      var comicImage = $("<img>")
+      comicImage.attr("src", results[i].image.thumb_url);
 
-        $("#comic-div").append(comicDiv);
-        
+      //appends the title(s), line break, and image(s) of comic(s) searched
+      comicDiv.css("float", "left")
+      comicDiv.css("margin-left", "15px")
+      comicDiv.append(comicTitle);
+      comicDiv.append(brk);
+      comicDiv.append(comicImage);
+
+
+      //appends comicDiv to comic div already in HTML
+      $("#comic-div").append(comicDiv);
+      searchListings(exactComic);
     }
-    searchListings(exactComic)
+
 
   });
 }
 
 
-  //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
+//-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
 
+var links = [];
 
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
-  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title + "&AvailableItemsOnly=true";
+  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title;
 
 
   $.ajax({
@@ -165,16 +167,62 @@ function searchListings(title) {
   }).then(function (response) {
 
     // Printing the entire object to console
-    console.log(response);
+
+    //parses response and sets it to text variable
+    var text = JSON.parse(response)
+
+    //looks through text.Ack to see if the value is Success, then look through text.Product array
+    if (text.Ack === "Success") {
+
+      //loops through text.Product array
+      for (var i = 0; i < text.Product.length; i++) {
+
+        //sets productObject button to text.Product at the index 0
+        var productObject = text.Product[0];
+
+        //sets itemLink variable to the value of productObject.DetailsURL
+        var itemLink = productObject.DetailsURL;
+
+        //pushes itemLink to links array
+        links.push(itemLink);
+      }
+
+    } else {
+
+      //otherwise, null is pushed to links array
+      links.push(null);
+
+    }
+    console.log(links);
 
     // Constructing HTML link/button containing link to buy book on ebay  
-    var buyButton = $("<button>");
-    buyButton.addClass("buyingButton");
-    buyButton.text("Click here to buy!");
 
-    // Empty the contents of the buybook-div, append the new buy book link
-    $("#buybook-div").empty();
-    $("#buybook-div").append(buyButton);
+    //loops through links array
+    for (var i = 0; i < links.length; i++) {
+
+      var comicLink = links[i]
+
+      //creates button to hold link to ebay page
+      var comicButton = $("<a>");
+
+      //gives link in links[i] to buttons
+      comicButton.attr("href", comicLink);
+
+      //adds class to comicButton
+      comicButton.addClass("buyButton");
+
+      //gives text to comicButton
+      comicButton.text("Click Here to Buy!")
+
+      //styles comicButton to look like a button
+      comicButton.css("width", "25px");
+      comicButton.css("height", "15px");
+
+      //appends comicButton to #comic-div
+      $(".each-comic").append(comicButton);
+
+    }
+
   });
 
 }
