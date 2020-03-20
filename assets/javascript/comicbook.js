@@ -82,7 +82,7 @@ $(document).on("click", ".pastsearch", function () {
 //--------------------------------------------------------------------------------------------------------------------------------
 
 
-
+var links = [];
 
 
 function searchComics(title) {
@@ -136,14 +136,17 @@ function searchComics(title) {
       comicImage.attr("src", results[i].image.thumb_url);
 
       //creates <p> tag to hold link to eBay
-      var comicBookLink = $("<p class='link'>");
+      var comicBookLink = $("<a>");
+      comicBookLink.attr("href", "https://www.ebay.com");
+      comicBookLink.text("Click Here to Buy!");
 
       //appends the title(s), line break, and image(s) of comic(s) searched
-      comicDiv.css("float", "left");
+      // comicDiv.css("float", "left");
       comicDiv.css("margin-left", "15px");
       comicDiv.append(comicTitle);
       comicDiv.append(brk);
       comicDiv.append(comicImage);
+      comicDiv.append(brk)
       comicDiv.append(comicBookLink);
 
 
@@ -159,11 +162,11 @@ function searchComics(title) {
 
 //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
 
-//var links = [];
+
 
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
-  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title;
+  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerAp-SBX-0ef6a25a1-34b200c&siteid=0&version=967&QueryKeywords=" + title;
 
 
   $.ajax({
@@ -175,6 +178,7 @@ function searchListings(title) {
 
     //parses response and sets it to text variable
     var text = JSON.parse(response)
+    console.log(text);
 
     //looks through text.Ack to see if the value is Success, then look through text.Product array
     if (text.Ack === "Success") {
@@ -189,7 +193,7 @@ function searchListings(title) {
         var itemLink = productObject.DetailsURL;
 
         //pushes itemLink to links array
-        links.push(itemLink);
+        link.push(itemLink);
       }
 
     } else {
@@ -203,30 +207,30 @@ function searchListings(title) {
     //Constructing HTML link/button containing link to buy book on ebay  
 
     //loops through links array
-    for (var i = 0; i < links.length; i++) {
+    // for (var i = 0; i < links.length; i++) {
 
-      var comicLink = links[i]
+    //   var comicLink = links.slice
 
-      //creates button to hold link to ebay page
-      var comicButton = $("<a>");
+    //   //creates button to hold link to ebay page
+    //   var comicButton = $("<a>");
 
-      //gives link in links[i] to buttons
-      comicButton.attr("href", comicLink);
+    //   //gives link in links[i] to buttons
+    //   comicButton.attr("href", comicLink);
 
-      // //adds class to comicButton
-      // comicButton.addClass("buyButton");
+    //   // //adds class to comicButton
+    //   // comicButton.addClass("buyButton");
 
-      // //gives text to comicButton
-      comicButton.text("Click Here to Buy!")
+    //   // //gives text to comicButton
+    //   comicButton.text("Click Here to Buy!")
 
-      // //styles comicButton to look like a button
-      // comicButton.css("width", "25px");
-      // comicButton.css("height", "15px");
+    //   // //styles comicButton to look like a button
+    //   // comicButton.css("width", "25px");
+    //   // comicButton.css("height", "15px");
 
-      //appends comicButton to #comic-div
-      $(".link").append(comicButton);
+    //   //appends comicButton to #comic-div
+    //   $(".each-comic").append(comicButton);
 
-    }
+    // }
 
   });
 
