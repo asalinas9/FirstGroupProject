@@ -10,9 +10,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 
     <title>Comic Book Search App</title>
@@ -106,13 +106,16 @@
                     <h3>Search Character</h3>
                     <div class="input-field">
                         <input class="white grey-text autocomplete" placeholder="Spiderman, Hulk, etc..." type="text"
-                            id="autocomplete-input">
+                            id="search-input">
                         <a href="#" class="btn btn-large blue darken-2" id="search-btn">Search</a>
                     </div>
                 </div>
             </div>
         </div>
+        <div id="comic-div"></div>
     </section>
+
+
 
     <section class="section section-follow red darken-3 white-text center">
         <div class="containter">
@@ -234,6 +237,8 @@
             }
         });
     </script>
+
+    
 </body>
 
 </html>

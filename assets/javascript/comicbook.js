@@ -121,6 +121,7 @@ function searchComics(title) {
 
       //creates <p> tag to hold name of comics
       var comicTitle = $("<h5>");
+      
 
       //floats results to left to add them side by side
 
@@ -162,11 +163,7 @@ function searchComics(title) {
 
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
-<<<<<<< HEAD
   var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title;
-=======
-  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=comicTitle" + title + "&AvailableItemsOnly=true";
->>>>>>> 2601ddf4bb1d90b5f6a4886afc3b67b6ee62fff8
 
 
   $.ajax({
