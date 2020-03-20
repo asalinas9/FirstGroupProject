@@ -78,16 +78,11 @@ $(document).on("click", ".pastsearch", function () {
 //------------------------------------------------------------ ajax call to comicbook + ebay APIs--------------------------------------------
 
 //----------------------------------things left to do:
-// 1. get URL, API key fro comic book URL and insert below - line 92
-// 2. figure out which search terms we need to use and insert into fuction name and query url. "title" is used as a placeholder for now - line 87, 92
-// 3. fill in "consturcting html containing comic information" section with relevant api data attributes - line 92+
-// 4. update variable names in append function to match cariable created in step 3 - line 101 - 108
-// 5. repeat for eBay API section (does it have to be the same search parameters as the first api? I'm confused) - lines 119, 128-129, 133
-// 6. pray it works *fingers crossed emoji*
+// 1. get links to create buttons and append to each comic
 //--------------------------------------------------------------------------------------------------------------------------------
 
 
-
+var links = [];
 
 
 function searchComics(title) {
@@ -121,8 +116,12 @@ function searchComics(title) {
       //creates div to hold info from API
       var comicDiv = $("<div>");
 
+      //gives class to comicDiv
+      comicDiv.addClass("each-comic");
+
       //creates <p> tag to hold name of comics
-      var comicTitle = $("<h3>");
+      var comicTitle = $("<h5>");
+      
 
       //floats results to left to add them side by side
 
@@ -136,18 +135,24 @@ function searchComics(title) {
       var comicImage = $("<img>")
       comicImage.attr("src", results[i].image.thumb_url);
 
+      //creates <p> tag to hold link to eBay
+      var comicBookLink = $("<a>");
+      comicBookLink.attr("href", "https://www.ebay.com");
+      comicBookLink.text("Click Here to Buy!");
+
       //appends the title(s), line break, and image(s) of comic(s) searched
-      comicDiv.css("float", "left")
-      comicDiv.css("margin-left", "15px")
+      // comicDiv.css("float", "left");
+      comicDiv.css("margin-left", "15px");
       comicDiv.append(comicTitle);
       comicDiv.append(brk);
       comicDiv.append(comicImage);
+      comicDiv.append(brk)
+      comicDiv.append(comicBookLink);
 
 
       //appends comicDiv to comic div already in HTML
-
       $("#comic-div").append(comicDiv);
-
+      searchListings(exactComic);
     }
 
 
@@ -158,9 +163,10 @@ function searchComics(title) {
 //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
 
 
+
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
-  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=comicTitle" + title + "&AvailableItemsOnly=true";
+  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerAp-SBX-0ef6a25a1-34b200c&siteid=0&version=967&QueryKeywords=" + title;
 
 
   $.ajax({
@@ -169,17 +175,63 @@ function searchListings(title) {
   }).then(function (response) {
 
     // Printing the entire object to console
-    console.log(response);
 
+    //parses response and sets it to text variable
+    var text = JSON.parse(response)
+    console.log(text);
 
+    //looks through text.Ack to see if the value is Success, then look through text.Product array
+    if (text.Ack === "Success") {
 
-    // Constructing HTML link/button containing link to buy book on ebay  
-    // var goToArtist = $("<a>").attr("href", response.url).text("See Tour Dates");
+      //loops through text.Product array
+      for (var i = 0; i < text.Product.length; i++) {
 
-    // Empty the contents of the buybook-div, append the new buy book link
-    $("#buybook-div").empty();
-    $("#buybook-div").append(//goToArtist
-    );
+        //sets productObject button to text.Product at the index 0
+        var productObject = text.Product[0];
+
+        //sets itemLink variable to the value of productObject.DetailsURL
+        var itemLink = productObject.DetailsURL;
+
+        //pushes itemLink to links array
+        link.push(itemLink);
+      }
+
+    } else {
+
+      //otherwise, null is pushed to links array
+      links.push(null);
+
+    }
+    console.log(links);
+
+    //Constructing HTML link/button containing link to buy book on ebay  
+
+    //loops through links array
+    // for (var i = 0; i < links.length; i++) {
+
+    //   var comicLink = links.slice
+
+    //   //creates button to hold link to ebay page
+    //   var comicButton = $("<a>");
+
+    //   //gives link in links[i] to buttons
+    //   comicButton.attr("href", comicLink);
+
+    //   // //adds class to comicButton
+    //   // comicButton.addClass("buyButton");
+
+    //   // //gives text to comicButton
+    //   comicButton.text("Click Here to Buy!")
+
+    //   // //styles comicButton to look like a button
+    //   // comicButton.css("width", "25px");
+    //   // comicButton.css("height", "15px");
+
+    //   //appends comicButton to #comic-div
+    //   $(".each-comic").append(comicButton);
+
+    // }
+
   });
 
 }
