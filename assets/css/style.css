@@ -46,6 +46,20 @@ h5 {
     background-color: coral;
     border-style: solid;
     border-color: black;
-    border-radius: 5%;
+    height: 25px;
     padding: 3px;
+    color: white;
+}
+
+.comic-info {
+    background-color: coral;
+    border-style: solid;
+    border-color: black;
+    height: 25px;
+    padding: 3px;
+    color: white;
+}
+
+.issues-number {
+    color: black;
 }
