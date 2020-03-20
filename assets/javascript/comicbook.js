@@ -82,7 +82,7 @@ $(document).on("click", ".pastsearch", function () {
 //--------------------------------------------------------------------------------------------------------------------------------
 
 
-
+var links = [];
 
 
 function searchComics(title) {
@@ -159,7 +159,7 @@ function searchComics(title) {
 
 //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
 
-var links = [];
+
 
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
@@ -190,7 +190,7 @@ function searchListings(title) {
         var itemLink = productObject.DetailsURL;
 
         //pushes itemLink to links array
-        links.push(itemLink);
+        link.push(itemLink);
       }
 
     } else {
