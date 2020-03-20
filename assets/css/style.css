@@ -8,6 +8,14 @@ body {
   margin-top: 20px;
 }
 
+#comic-div {
+  margin-top: 10px;
+  overflow: auto;
+  max-width: 900px;
+  max-height: 500px;
+
+}
+
 .section-search input {
   padding: 5px !important;
   font-size: 18px !important;
