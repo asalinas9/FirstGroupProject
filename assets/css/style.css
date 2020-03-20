@@ -32,7 +32,7 @@ body {
 }
 
 #comic-div {
-    height: 350px;
+    height: 400px;
     width: 500px;
     margin-left: 33.33%;
     overflow: auto ;
@@ -40,4 +40,12 @@ body {
 
 h5 {
     color: black;
+}
+
+.buy-book {
+    background-color: coral;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5%;
+    padding: 3px;
 }
