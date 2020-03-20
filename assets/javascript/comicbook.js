@@ -27,9 +27,12 @@ function renderpastsearch(list) {
 }
 //--------------------------------ON CLICK SEARCH BUTTON FUNTCION-----------------------------------------------------------------------------------------
 
+
+
 // Button for adding Search term, putting search term in array in local storage
 $("#search-btn").on("click", function (event) {
   event.preventDefault();
+
   // Grabs user input
   var searchTerm = $("#search-input").val().trim();
 
@@ -82,7 +85,7 @@ $(document).on("click", ".pastsearch", function () {
 //--------------------------------------------------------------------------------------------------------------------------------
 
 
-var links = [];
+
 
 
 function searchComics(title) {
@@ -121,9 +124,6 @@ function searchComics(title) {
 
       //creates <p> tag to hold name of comics
       var comicTitle = $("<h5>");
-      
-
-      //floats results to left to add them side by side
 
       //!!!---NEEDS TO BE FIXED, DOESN'T DISPLAY NAME ON PAGE---!!!
       comicTitle.text(results[i].name);
@@ -135,9 +135,15 @@ function searchComics(title) {
       var comicImage = $("<img>")
       comicImage.attr("src", results[i].image.thumb_url);
 
+      var bookLink
+
+      searchListings(exactComic);
+
       //creates <p> tag to hold link to eBay
       var comicBookLink = $("<a>");
-      comicBookLink.attr("href", "https://www.ebay.com");
+      comicBookLink.attr("href", bookLink);
+      comicBookLink.addClass("buy-book")
+      console.log(comicBookLink);
       comicBookLink.text("Click Here to Buy!");
 
       //appends the title(s), line break, and image(s) of comic(s) searched
@@ -152,7 +158,7 @@ function searchComics(title) {
 
       //appends comicDiv to comic div already in HTML
       $("#comic-div").append(comicDiv);
-      searchListings(exactComic);
+      
     }
 
 
@@ -192,45 +198,17 @@ function searchListings(title) {
         //sets itemLink variable to the value of productObject.DetailsURL
         var itemLink = productObject.DetailsURL;
 
-        //pushes itemLink to links array
-        link.push(itemLink);
+        bookLink = itemLink
+        console.log(bookLink);
       }
 
     } else {
 
-      //otherwise, null is pushed to links array
-      links.push(null);
+      bookLink = "#";
+      //console.log(bookLink)
 
     }
-    console.log(links);
 
-    //Constructing HTML link/button containing link to buy book on ebay  
-
-    //loops through links array
-    // for (var i = 0; i < links.length; i++) {
-
-    //   var comicLink = links.slice
-
-    //   //creates button to hold link to ebay page
-    //   var comicButton = $("<a>");
-
-    //   //gives link in links[i] to buttons
-    //   comicButton.attr("href", comicLink);
-
-    //   // //adds class to comicButton
-    //   // comicButton.addClass("buyButton");
-
-    //   // //gives text to comicButton
-    //   comicButton.text("Click Here to Buy!")
-
-    //   // //styles comicButton to look like a button
-    //   // comicButton.css("width", "25px");
-    //   // comicButton.css("height", "15px");
-
-    //   //appends comicButton to #comic-div
-    //   $(".each-comic").append(comicButton);
-
-    // }
 
   });
 
