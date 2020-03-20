@@ -56,6 +56,9 @@ $("#search-btn").on("click", function (event) {
   $("#comic-div").empty();
   //runs searchComics function with calls to APIs
   searchComics(searchTerm);
+  
+
+
   // Clears all of the text-boxes
   $("#search-input").val("");
 });
@@ -109,6 +112,7 @@ function searchComics(title) {
     //creates variable to hold the results array from the API response 
     var results = response.results;
     var exactComic = "";
+    var bookLink = "";
 
     //loops through results array
     for (var i = 0; i < results.length; i++) {
@@ -135,13 +139,13 @@ function searchComics(title) {
       var comicImage = $("<img>")
       comicImage.attr("src", results[i].image.thumb_url);
 
-      var bookLink
+      
 
       searchListings(exactComic);
 
       //creates <p> tag to hold link to eBay
       var comicBookLink = $("<a>");
-      comicBookLink.attr("href", bookLink);
+      comicBookLink.attr("href", "https://www.ebay.com");
       comicBookLink.addClass("buy-book")
       console.log(comicBookLink);
       comicBookLink.text("Click Here to Buy!");
