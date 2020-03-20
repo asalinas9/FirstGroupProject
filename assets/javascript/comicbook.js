@@ -139,7 +139,18 @@ function searchComics(title) {
       var comicImage = $("<img>")
       comicImage.attr("src", results[i].image.thumb_url);
 
-      
+      //creates <p> tag to hold number of issues for each title
+      var comicIssuesNumber = $("<p>");
+
+      //gives class to comicIssuesNumber
+      comicIssuesNumber.addClass("issues-number");
+
+      comicIssuesNumber.text("Number of Issues:" + results[i].count_of_issues);
+
+      var comicDetails = $("<a>");
+      comicDetails.attr("href", results[i].site_detail_url);
+      comicDetails.addClass("comic-info")
+      comicDetails.text("Click Here for more Info about This Title")
 
       searchListings(exactComic);
 
@@ -151,18 +162,20 @@ function searchComics(title) {
       comicBookLink.text("Click Here to Buy!");
 
       //appends the title(s), line break, and image(s) of comic(s) searched
-      // comicDiv.css("float", "left");
-      comicDiv.css("margin-left", "15px");
       comicDiv.append(comicTitle);
       comicDiv.append(brk);
       comicDiv.append(comicImage);
-      comicDiv.append(brk)
+      comicDiv.append(brk);
+      comicDiv.append(comicIssuesNumber);
       comicDiv.append(comicBookLink);
+      comicDiv.append(brk);
+      comicDiv.append(brk);
+      comicDiv.append(comicDetails);
 
 
       //appends comicDiv to comic div already in HTML
       $("#comic-div").append(comicDiv);
-      
+
     }
 
 
