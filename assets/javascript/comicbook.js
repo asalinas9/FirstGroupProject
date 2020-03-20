@@ -159,11 +159,11 @@ function searchComics(title) {
 
 //-------------------------eBay API AJAX Call + append to HTML-------------------------------------------------------------
 
-//var links = [];
+var links = [];
 
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
-  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title;
+  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerAp-SBX-0ef6a25a1-34b200c&siteid=0&version=967&QueryKeywords=" + title;
 
 
   $.ajax({
@@ -175,6 +175,7 @@ function searchListings(title) {
 
     //parses response and sets it to text variable
     var text = JSON.parse(response)
+    console.log(text);
 
     //looks through text.Ack to see if the value is Success, then look through text.Product array
     if (text.Ack === "Success") {
