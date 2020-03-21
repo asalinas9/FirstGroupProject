@@ -114,6 +114,7 @@ function searchComics(title) {
     var exactComic = "";
     var bookLink = "";
 
+    if (results.number_of_total_results > 0) {
     //loops through results array
     for (var i = 0; i < results.length; i++) {
 
@@ -177,6 +178,21 @@ function searchComics(title) {
       $("#comic-div").append(comicDiv);
 
     }
+
+  } else {
+
+    var noResultsDiv = $("<div>");
+
+    var noResults = $("<h3>");
+
+    noResults.text("Sorry, no results were found. Please try again!");
+
+    noResultsDiv.append(noResults);
+    console.log(noResultsDiv);
+
+    $("#comic-div").append(noResultsDiv);
+
+  }
 
 
   });
