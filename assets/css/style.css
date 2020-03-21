@@ -10,7 +10,6 @@ nav .brand-logo {
   text-decoration: none;
 }
 
-
 nav ul a:hover {
   color: black;
   text-decoration: none;
@@ -53,6 +52,35 @@ nav ul a:hover {
 h5 {
     color: black;
 }
+
+.mycard {
+  position: relative;
+  padding-bottom: 85px;
+}
+
+.mycard a {
+  text-decoration: none;
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.mycard a:hover {
+  color: black;
+}
+
+@media screen  and (max-width: 1679px) {
+  .mycard a {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .mycard a {
+    font-size: large;
+  }
+}
+
 
 .buy-book {
     background-color: coral;
