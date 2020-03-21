@@ -70,6 +70,10 @@ h5 {
 }
 
 @media screen  and (max-width: 1679px) {
+  .mycard {
+    position: relative;
+    padding-bottom: 105px;
+  }
   .mycard a {
     font-size: 30px;
   }
@@ -102,4 +106,44 @@ h5 {
 
 .issues-number {
     color: black;
+}
+
+
+/* div #comic-div {
+  width: 100%;
+} */
+
+.comic-info {
+  margin-top: 20px;
+}
+
+.buy-book {
+  background-color: #213141;
+  border: 2px solid black;
+  font-size: large;
+  position: relative;
+  bottom: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.buy-book:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.comic-info {
+  background-color: #213141;
+  border: 2px solid black;
+  font-size: large;
+  position: relative;
+  /* top: 10px;
+  margin-top: 20px; */
+  border-radius: 4px;
+  color: white;
+}
+
+.comic-info:hover {
+  text-decoration: none;
+  color: black;
 }
