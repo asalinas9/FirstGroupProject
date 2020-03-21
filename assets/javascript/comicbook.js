@@ -156,7 +156,7 @@ function searchComics(title) {
 
       //creates <p> tag to hold link to eBay
       var comicBookLink = $("<a>");
-      comicBookLink.attr("href", "https://www.ebay.com");
+      //comicBookLink.attr("href", "https://www.ebay.com");
       comicBookLink.addClass("buy-book")
       console.log(comicBookLink);
       comicBookLink.text("Click Here to Buy!");
@@ -189,7 +189,7 @@ function searchComics(title) {
 
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
-  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerAp-SBX-0ef6a25a1-34b200c&siteid=0&version=967&QueryKeywords=" + title;
+  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title;
 
 
   $.ajax({
@@ -217,10 +217,12 @@ function searchListings(title) {
 
         bookLink = itemLink
         console.log(bookLink);
+        $(document).find(".buy-book").attr("href", bookLink)
       }
 
     } else {
 
+      $(document).find(".buy-book").attr("href", "#")
       bookLink = "#";
       //console.log(bookLink)
 
