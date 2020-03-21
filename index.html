@@ -4,17 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/1cda4fe608.js" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 
     <title>Comic Book Search App</title>
 
@@ -33,13 +30,15 @@
 
                     <div id="comic-div">
                     -->
-
+    <!--using Materialize CSS Framework-->
     <div class="navbar-fixed">
         <nav class="red darken-3">
             <div class="container">
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo darken-3 white-text">Comic Book Search App</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a href="#" class="brand-logo">D Comic Store</a>
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                        <i class="material-icons">menu</i>
+                    </a>
                     <ul class="right hide-on-med-and-down">
                         <li>
                             <a href="#home">Home</a>
@@ -59,7 +58,7 @@
             </div>
         </nav>
     </div>
-    <ul class="sidenav" id="mobile-demo">
+    <ul class="sidenav" id="mobile-nav">
         <li>
             <a href="#home">Home</a>
         </li>
@@ -115,12 +114,9 @@
                 </div>
             </div>
         </div>
-        <div id="comic-div"></div>
     </section>
 
-
     <section class="section section-follow blue darken-2 white-text center">
-
         <div class="containter">
             <div class="row">
                 <div class="col s12">
@@ -240,8 +236,6 @@
             }
         });
     </script>
-
-    
 </body>
 
 </html>
