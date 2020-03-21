@@ -189,7 +189,7 @@ function searchComics(title) {
 
 function searchListings(title) {
   // Querying the ebay api for the selected title, the ?app_id parameter is required, but can equal anything
-  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerAp-SBX-0ef6a25a1-34b200c&siteid=0&version=967&QueryKeywords=" + title;
+  var EbayQueryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=TannerMi-ComicBoo-PRD-ad10d2f82-a53d4b9a&siteid=0&version=967&QueryKeywords=" + title;
 
 
   $.ajax({
@@ -217,7 +217,7 @@ function searchListings(title) {
 
         bookLink = itemLink
         console.log(bookLink);
-        $(document).find(".buy-book").attr("href", itemLink)
+        $(document).find(".buy-book").attr("href", bookLink)
       }
 
     } else {
