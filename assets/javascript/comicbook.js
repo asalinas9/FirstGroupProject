@@ -111,10 +111,11 @@ function searchComics(title) {
 
     //creates variable to hold the results array from the API response 
     var results = response.results;
+    var numberOfComics = response.number_of_total_results;
     var exactComic = "";
     var bookLink = "";
 
-    if (results.number_of_total_results > 0) {
+    if (numberOfComics > 0) {
     //loops through results array
     for (var i = 0; i < results.length; i++) {
 
