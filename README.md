@@ -19,7 +19,7 @@ The only issue we had with this project was due to the restrictions of the APIs 
 HTML, Materialized CSS, APIs, Javascript, Jquery
 
 ### Collaborators 
-Gabrielle Byers
-Felipe Cantu
-Tanner Millican
-Aldo Salinas
+Gabrielle Byers.
+Felipe Cantu.
+Tanner Millican.
+Aldo Salinas.
