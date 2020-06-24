@@ -1,6 +1,7 @@
 # FirstGroupProject
 
-https://asalinas9.github.io/FirstGroupProject/
+[GitHub Page](https://asalinas9.github.io/FirstGroupProject/)
+
 
 # Comic Book Search App Group Project
 
@@ -16,3 +17,9 @@ The only issue we had with this project was due to the restrictions of the APIs 
 
 # Languages & Technologies used
 HTML, Materialized CSS, APIs, Javascript, Jquery
+
+### Collaborators 
+Gabrielle Byers
+Felipe Cantu
+Tanner Millican
+Aldo Salinas
